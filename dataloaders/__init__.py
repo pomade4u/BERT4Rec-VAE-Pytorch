@@ -9,7 +9,7 @@ DATALOADERS = {
 }
 
 
-def dataloader_factory(args):
+def factory(args):
     dataset = dataset_factory(args)
     dataloader = DATALOADERS[args.dataloader_code]
     dataloader = dataloader(args, dataset)
