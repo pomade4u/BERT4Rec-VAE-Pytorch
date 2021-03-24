@@ -25,9 +25,9 @@ def set_template(args):
         args.test_negative_sampling_seed = 98765
 
         args.trainer_code = 'bert'
-        args.device = 'cuda'
-        args.num_gpu = 1
-        args.device_idx = '0'
+        # args.device = 'cuda'
+        # args.num_gpu = 1
+        # args.device_idx = '0'
         args.optimizer = 'Adam'
         args.lr = 0.001
         args.enable_lr_schedule = True
@@ -46,7 +46,7 @@ def set_template(args):
         args.bert_max_len = 100
         args.bert_num_blocks = 2
         args.bert_num_heads = 4
-    
+
     elif args.template.startswith('train_dae'):
         args.mode = 'train'
 
@@ -120,7 +120,7 @@ def set_template(args):
         args.vae_hidden_dim = 600
         args.vae_latent_dim = 200
         args.vae_dropout = 0.5
-    
+
     elif args.template.startswith('train_vae_give_beta'):
         args.mode = 'train'
 
@@ -159,4 +159,3 @@ def set_template(args):
         args.vae_hidden_dim = 600
         args.vae_latent_dim = 200
         args.vae_dropout = 0.5
-

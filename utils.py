@@ -1,4 +1,4 @@
-from config import *
+import config
 
 import json
 import os
@@ -14,7 +14,7 @@ from torch import optim as optim
 
 
 def setup_train(args):
-    set_up_gpu(args)
+    # set_up_gpu(args)
 
     export_root = create_experiment_export_folder(args)
     export_experiments_config_as_json(args, export_root)
@@ -78,14 +78,14 @@ def set_up_gpu(args):
 
 def load_pretrained_weights(model, path):
     chk_dict = torch.load(os.path.abspath(path))
-    model_state_dict = chk_dict[STATE_DICT_KEY] if STATE_DICT_KEY in chk_dict else chk_dict['state_dict']
+    model_state_dict = chk_dict[config.STATE_DICT_KEY] if config.STATE_DICT_KEY in chk_dict else chk_dict['state_dict']
     model.load_state_dict(model_state_dict)
 
 
 def setup_to_resume(args, model, optimizer):
     chk_dict = torch.load(os.path.join(os.path.abspath(args.resume_training), 'models/checkpoint-recent.pth'))
-    model.load_state_dict(chk_dict[STATE_DICT_KEY])
-    optimizer.load_state_dict(chk_dict[OPTIMIZER_STATE_DICT_KEY])
+    model.load_state_dict(chk_dict[config.STATE_DICT_KEY])
+    optimizer.load_state_dict(chk_dict[OPTIMIZER_config.STATE_DICT_KEY])
 
 
 def create_optimizer(model, args):
